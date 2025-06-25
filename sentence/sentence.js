@@ -3,6 +3,15 @@ function getParam(name) {
   return params.get(name);
 }
 
+function showAlert(msg) {
+  document.getElementById('alert-msg').innerText = msg;
+  document.getElementById('custom-alert').classList.remove('hide');
+}
+
+document.getElementById('alert-close').addEventListener('click', () => {
+  document.getElementById('custom-alert').classList.add('hide');
+});
+
 const lessonFile = getParam('lesson') || 'L1.json';
 const quizArea = document.getElementById('quiz-area');
 
@@ -49,6 +58,7 @@ fetch(lessonFile)
       const clearBtn = document.createElement('button');
       clearBtn.className = 'icon-btn';
       clearBtn.title = '清除';
+      clearBtn.id = 'clears';
       clearBtn.innerHTML = `<img src="../icons/bin.png" alt="清除" width="20" height="20">`;
 
       const resultSpan = document.createElement('span');
@@ -56,7 +66,7 @@ fetch(lessonFile)
 
       submitBtn.addEventListener('click', () => {
         if (currentAns === '') {
-          alert('請先選擇答案！');
+          showAlert('請先選擇答案！');
           return;
         }
         if (currentAns === item.answer) {

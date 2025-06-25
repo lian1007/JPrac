@@ -91,7 +91,11 @@ select {
 .result-text {
   margin-left: 1rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
 }
+
+/* ========== 答案送出+清除按鈕 ========== */
 
 .icon-btn {
   width: 40px;
@@ -111,11 +115,85 @@ select {
 }
 
 .icon-btn:hover {
-  background-color: #dbdbdb;
+  background-color: #ddff9e;
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+#clears:hover {
+  background-color: #ff5a5a;
+  animation: shakeani 0.4s linear infinite both;
+}
+
+@keyframes shakeani {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+
+  20% {
+    -webkit-transform: translate(-1px, 1px);
+    transform: translate(-1px, 1px);
+  }
+
+  40% {
+    -webkit-transform: translate(-1px, -1px);
+    transform: translate(-1px, -1px);
+  }
+
+  60% {
+    -webkit-transform: translate(1px, 1px);
+    transform: translate(1px, 1px);
+  }
+
+  80% {
+    -webkit-transform: translate(1px, -1px);
+    transform: translate(1px, -1px);
+  }
+
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
 }
 
 .btn-group {
-  gap: 5px;
+  gap: 7px;
   display: flex;
   padding: 4px;
+}
+
+/* ========== 警告訊息彈出 ========== */
+
+#custom-alert {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.alert-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 250px;
+}
+
+#custom-alert.hide {
+  display: none;
+}
+
+#alert-close {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
