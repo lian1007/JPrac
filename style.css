@@ -15,6 +15,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 nav ul {
@@ -45,9 +46,9 @@ nav a:hover {
   padding-left: 50px;
 }
 
-.course-select {
+.select-group {
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 10px auto;
   padding: 1rem;
   text-align: center;
   border: solid 1px #eeeeee;
@@ -63,7 +64,7 @@ select {
   min-width: 120px;
 }
 
-#go {
+.go {
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -72,7 +73,7 @@ select {
   transition: background-color 0.2s, color 0.2s;
 }
 
-#go:hover {
+.go:hover {
   background-color: #4a90e2;
   color: #fff;
   border-color: #4a90e2;
