@@ -30,13 +30,19 @@ nav a {
   color: #333;
 }
 
+nav a:hover {
+  color: #1d4ed8;
+  /* font-weight: bold; */
+}
+
 .quiz-area {
-  margin-top: 2rem;
-  width: 100%;
+  margin: 2rem auto;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding-bottom: 100px;
+  padding-left: 50px;
 }
 
 .course-select {
@@ -106,6 +112,7 @@ select {
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 0 3px;
 }
 
 .icon-btn img {
@@ -159,8 +166,9 @@ select {
 
 .btn-group {
   gap: 7px;
-  display: flex;
   padding: 4px;
+  margin-top: 7px;
+  display: flex;
 }
 
 /* ========== 警告訊息彈出 ========== */

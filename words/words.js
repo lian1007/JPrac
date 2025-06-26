@@ -18,7 +18,16 @@ const quizArea = document.getElementById('quiz-area');
 fetch(lessonFile)
   .then((res) => res.json())
   .then((quizData) => {
-    quizData.forEach((item, index) => {
+    console.log(quizData.length);
+
+    // 只洗一次，抽出 20 題
+    const shuffled = quizData.sort(() => Math.random() - 0.5);
+    const total = Math.min(20, shuffled.length);
+    const selected = shuffled.slice(0, total);
+
+    console.log(selected.length); // 應固定 20
+
+    selected.forEach((item, index) => {
       const container = document.createElement('div');
       container.className = 'question-block';
 
