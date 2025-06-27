@@ -12,8 +12,8 @@
       <nav>
         <ul>
           <li><a href="index.html" style="color: #1d4ed8">首頁</a></li>
-          <li><a href="about.html">關於</a></li>
-          <li><a href="donate.html">贊助</a></li>
+          <li><a href="pages/about.html">關於</a></li>
+          <li><a href="pages/about.html">贊助</a></li>
         </ul>
       </nav>
     </header>
@@ -21,19 +21,36 @@
     <div class="select-group" id="wordsclass">
       <h3>單字練習</h3>
       <select id="lesson-word">
-        <option value="words/layout.html?lesson=L2.json">第二課</option>
-        <option value="words/layout.html?lesson=L3.json">第三課</option>
+        <option value="test.html?lesson=words/L1.json&mode=word">第一課</option>
+        <option value="test.html?lesson=words/L2.json&mode=word">第二課</option>
+        <option value="test.html?lesson=words/L3.json&mode=word">第三課</option>
       </select>
-      <button class="go">前往測驗</button>
+      <button class="button_go">前往測驗</button>
     </div>
 
     <div class="select-group" id="sentenceclass">
       <h3>文法練習</h3>
       <select id="lesson-sentence">
-        <option value="sentence/layout.html?lesson=L1.json">第一課</option>
+        <option value="test.html?lesson=sentence/L1.json&mode=sentence">第一課</option>
       </select>
-      <button class="go">前往測驗</button>
+      <button class="button_go">前往測驗</button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+      // 綁定兩個前往測驗按鈕
+      document.querySelectorAll('.button_go').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const parent = btn.parentElement;
+
+          if (parent.id === 'wordsclass') {
+            const url = parent.querySelector('#lesson-word').value;
+            location.href = url;
+          } else if (parent.id === 'sentenceclass') {
+            const url = parent.querySelector('#lesson-sentence').value;
+            location.href = url;
+          }
+        });
+      });
+    </script>
   </body>
 </html>

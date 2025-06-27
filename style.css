@@ -15,7 +15,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 nav ul {
@@ -64,7 +63,7 @@ select {
   min-width: 120px;
 }
 
-.go {
+.button_go {
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -73,7 +72,7 @@ select {
   transition: background-color 0.2s, color 0.2s;
 }
 
-.go:hover {
+.button_go:hover {
   background-color: #4a90e2;
   color: #fff;
   border-color: #4a90e2;
@@ -205,4 +204,28 @@ select {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* ========== 完成作答訊息 ========== */
+
+#complete-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.complete-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 2rem;
+}
+
+#complete-box.hide {
+  display: none;
 }

@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>單字練習</title>
+    <title>日文練習</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <header>
-      <h1>單字練習</h1>
+      <h1 id="page-title">日文練習</h1>
       <nav>
         <ul>
           <li><a href="../index.html">首頁</a></li>
           <li><a href="../about.html">關於</a></li>
-          <li><a href="../donate.html">贊助</a></li>
         </ul>
       </nav>
     </header>
@@ -30,6 +29,14 @@
       </div>
     </div>
 
-    <script src="words.js"></script>
+    <div id="complete-box" class="hide">
+      <div class="complete-content">
+        <h3>✅ 已完成測驗</h3>
+        <button id="retry" class="button_go">重新測驗</button>
+        <button id="backHome" class="button_go">回首頁</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
