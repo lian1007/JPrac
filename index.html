@@ -28,10 +28,23 @@
       <button class="button_go">前往測驗</button>
     </div>
 
+    <div class="select-group" id="dictclass">
+      <h3>聽寫練習</h3>
+      <select id="lesson-dict">
+        <option value="test.html?lesson=dict/L1.json&mode=dict">第一課</option>
+      </select>
+      <button class="button_go">前往測驗</button>
+    </div>
+
+    <!-- <option value="test.html?lesson=words/L2.json&mode=word">第二課</option>
+        <option value="test.html?lesson=words/L3.json&mode=word">第三課</option> -->
+
     <div class="select-group" id="sentenceclass">
       <h3>文法練習</h3>
       <select id="lesson-sentence">
-        <option value="test.html?lesson=sentence/L1.json&mode=sentence">第一課</option>
+        <option value="test.html?lesson=sentence/L1.json&mode=sentence">
+          第一課
+        </option>
       </select>
       <button class="button_go">前往測驗</button>
     </div>
@@ -47,6 +60,9 @@
             location.href = url;
           } else if (parent.id === 'sentenceclass') {
             const url = parent.querySelector('#lesson-sentence').value;
+            location.href = url;
+          } else if (parent.id === 'dictclass') {
+            const url = parent.querySelector('#lesson-dict').value;
             location.href = url;
           }
         });

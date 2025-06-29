@@ -39,7 +39,7 @@ fetch(lessonFile)
   .then((quizData) => {
     console.log(quizData.length);
 
-    // 只洗一次，抽出 20 題
+    // 只洗一次，抽出 X 題
     const shuffled = quizData.sort(() => Math.random() - 0.5);
     const total = Math.min(5, shuffled.length);
     const selected = shuffled.slice(0, total);
