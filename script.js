@@ -59,44 +59,49 @@ fetch(lessonFile)
 
       let selectedAns = '';
 
-      item.options.forEach((opt) => {
-        const btn = document.createElement('button');
-        btn.innerText = opt;
-        btn.addEventListener('click', () => {
-          selectedAns = opt;
-          const optionBtns = optionsDiv.querySelectorAll('button');
-          optionBtns.forEach((b) => b.classList.remove('selected'));
-          btn.classList.add('selected');
+      let btnGroup, submitBtn, clearBtn, resultSpan;
+
+      // ========== 中翻日 ==========
+
+      if (mode === 'dict') {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = '請輸入日文平假/片假名';
+        input.className = 'inputtext';
+        container.appendChild(input);
+
+        // 新增 Enter 送出邏輯
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            submitBtn.click();
+          }
         });
-        optionsDiv.appendChild(btn);
-      });
 
-      container.appendChild(optionsDiv);
+        btnGroup = document.createElement('div');
+        btnGroup.className = 'btn-group';
 
-      const btnGroup = document.createElement('div');
-      btnGroup.className = 'btn-group';
+        submitBtn = document.createElement('button');
+        submitBtn.className = 'icon-btn';
+        submitBtn.title = '送出';
+        submitBtn.innerHTML = `<img src="icons/check.png" alt="送出" width="20" height="20">`;
 
-      const submitBtn = document.createElement('button');
-      submitBtn.className = 'icon-btn';
-      submitBtn.title = '送出';
-      submitBtn.innerHTML = `<img src="icons/check.png" alt="送出" width="20" height="20">`;
+        clearBtn = document.createElement('button');
+        clearBtn.className = 'icon-btn';
+        clearBtn.id = 'clears';
+        clearBtn.title = '清除';
+        clearBtn.innerHTML = `<img src="icons/bin.png" alt="清除" width="20" height="20">`;
 
-      const clearBtn = document.createElement('button');
-      clearBtn.className = 'icon-btn';
-      clearBtn.title = '清除';
-      clearBtn.id = 'clears';
-      clearBtn.innerHTML = `<img src="icons/bin.png" alt="清除" width="20" height="20">`;
+        resultSpan = document.createElement('span');
+        resultSpan.className = 'result-text';
 
-      const resultSpan = document.createElement('span');
-      resultSpan.className = 'result-text';
-
-      if (index === selected.length - 1) {
-        // 最後一題
         submitBtn.addEventListener('click', () => {
+          selectedAns = input.value.trim();
           if (selectedAns === '') {
-            showAlert('請先選擇答案！');
+            showAlert('請先輸入答案！');
             return;
           }
+
           if (selectedAns === item.answer) {
             resultSpan.innerText = '✅';
             resultSpan.style.color = 'green';
@@ -104,18 +109,58 @@ fetch(lessonFile)
             resultSpan.innerText = `❌ 正確答案：${item.answer}`;
             resultSpan.style.color = 'red';
           }
-
-          // 檢查所有題目結果
-          const allCorrect = [
-            ...document.querySelectorAll('.result-text'),
-          ].every((r) => r.innerText === '✅');
-
-          if (allCorrect) {
-            showComplete();
+          // 最後一題檢查
+          if (index === selected.length - 1) {
+            const allCorrect = [
+              ...document.querySelectorAll('.result-text'),
+            ].every((r) => r.innerText === '✅');
+            if (allCorrect) {
+              showComplete();
+            }
           }
+        });
+
+        clearBtn.addEventListener('click', () => {
+          input.value = '';
+          resultSpan.innerText = '';
         });
       } else {
-        // 普通題送出按鈕
+        /* --------非中翻日文 --------*/
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options';
+
+        item.options.forEach((opt) => {
+          const btn = document.createElement('button');
+          btn.innerText = opt;
+          btn.addEventListener('click', () => {
+            selectedAns = opt;
+            const optionBtns = optionsDiv.querySelectorAll('button');
+            optionBtns.forEach((b) => b.classList.remove('selected'));
+            btn.classList.add('selected');
+          });
+          optionsDiv.appendChild(btn);
+        });
+
+        container.appendChild(optionsDiv);
+
+        btnGroup = document.createElement('div');
+        btnGroup.className = 'btn-group';
+
+        submitBtn = document.createElement('button');
+        submitBtn.className = 'icon-btn';
+        submitBtn.title = '送出';
+        submitBtn.innerHTML = `<img src="icons/check.png" alt="送出" width="20" height="20">`;
+
+        clearBtn = document.createElement('button');
+        clearBtn.className = 'icon-btn';
+        clearBtn.title = '清除';
+        clearBtn.id = 'clears';
+        clearBtn.innerHTML = `<img src="icons/bin.png" alt="清除" width="20" height="20">`;
+
+        resultSpan = document.createElement('span');
+        resultSpan.className = 'result-text';
+
         submitBtn.addEventListener('click', () => {
           if (selectedAns === '') {
             showAlert('請先選擇答案！');
@@ -128,15 +173,24 @@ fetch(lessonFile)
             resultSpan.innerText = `❌ 正確答案：${item.answer}`;
             resultSpan.style.color = 'red';
           }
+          // 最後一題檢查
+          if (index === selected.length - 1) {
+            const allCorrect = [
+              ...document.querySelectorAll('.result-text'),
+            ].every((r) => r.innerText === '✅');
+            if (allCorrect) {
+              showComplete();
+            }
+          }
+        });
+
+        clearBtn.addEventListener('click', () => {
+          selectedAns = '';
+          const optionBtns = optionsDiv.querySelectorAll('button');
+          optionBtns.forEach((btn) => btn.classList.remove('selected'));
+          resultSpan.innerText = '';
         });
       }
-
-      clearBtn.addEventListener('click', () => {
-        selectedAns = '';
-        const optionBtns = optionsDiv.querySelectorAll('button');
-        optionBtns.forEach((btn) => btn.classList.remove('selected'));
-        resultSpan.innerText = '';
-      });
 
       btnGroup.appendChild(submitBtn);
       btnGroup.appendChild(clearBtn);
