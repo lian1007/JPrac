@@ -7,15 +7,19 @@ function getParam(name) {
 function showAlert(msg) {
   document.getElementById('alert-msg').innerText = msg;
   document.getElementById('custom-alert').classList.remove('hide');
+  document.getElementById('alert-close').focus(); // 🔹 自動聚焦按鈕
 }
 
-document.getElementById('alert-close').addEventListener('click', () => {
-  document.getElementById('custom-alert').classList.add('hide');
+document.getElementById('alert-close').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    document.getElementById('custom-alert').classList.add('hide');
+  }
 });
 
 /* ========== 完成作答訊息 ========== */
 function showComplete() {
   document.getElementById('complete-box').classList.remove('hide');
+  saveTodayAttempt(); // ⬅️ 記錄今天的測驗次數
 }
 
 document.getElementById('retry').addEventListener('click', () => {
@@ -41,7 +45,7 @@ fetch(lessonFile)
 
     // 只洗一次，抽出 X 題
     const shuffled = quizData.sort(() => Math.random() - 0.5);
-    const total = Math.min(5, shuffled.length);
+    const total = Math.min(6, shuffled.length);
     const selected = shuffled.slice(0, total);
 
     console.log(selected.length); // 應固定 20
@@ -102,13 +106,18 @@ fetch(lessonFile)
             return;
           }
 
-          if (selectedAns === item.answer) {
+          const answers = Array.isArray(item.answer)
+            ? item.answer
+            : [item.answer];
+
+          if (answers.includes(selectedAns)) {
             resultSpan.innerText = '✅';
             resultSpan.style.color = 'green';
           } else {
-            resultSpan.innerText = `❌ 正確答案：${item.answer}`;
+            resultSpan.innerText = `❌ 正確答案：${answers.join(' 或 ')}`;
             resultSpan.style.color = 'red';
           }
+
           // 最後一題檢查
           if (index === selected.length - 1) {
             const allCorrect = [

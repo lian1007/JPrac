@@ -206,6 +206,10 @@ select {
   cursor: pointer;
 }
 
+#alert-close:focus {
+  outline: 0px solid;
+}
+
 /* ========== 完成作答訊息 ========== */
 
 #complete-box {
@@ -255,4 +259,12 @@ select {
 
 .inputtext:focus {
   background-color: #ffffff;
+}
+
+/* ========== 徽章系統 ========== */
+.today-message {
+  margin-top: 1rem;
+  text-align: center;
+  color: #1a73e8;
+  font-weight: bold;
 }
