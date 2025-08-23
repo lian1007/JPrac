@@ -267,4 +267,28 @@ select {
   text-align: center;
   color: #1a73e8;
   font-weight: bold;
+  background: #f5f5f5;
+  padding: 10px;
+  border: 0px solid;
+  border-radius: 12px;
+}
+.today-message:hover {
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(255, 198, 198, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.count-circle {
+  display: inline-block;
+  background-color: #f5d0f6; /* 你要的底色 */
+  border-radius: 50%;
+  width: 24px; /* 圓的寬度 */
+  height: 24px; /* 圓的高度 */
+  line-height: 24px; /* 讓文字垂直置中 */
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
 }

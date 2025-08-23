@@ -33,6 +33,7 @@
       <select id="lesson-dict">
         <option value="test.html?lesson=dict/L1.json&mode=dict">第一課</option>
         <option value="test.html?lesson=dict/L2.json&mode=dict">第二課</option>
+        <option value="test.html?lesson=dict/L3.json&mode=dict">第三課</option>
       </select>
       <button class="button_go">前往測驗</button>
     </div>
@@ -89,7 +90,7 @@
         const count = allData[today] || 0;
 
         const countBox = document.getElementById('today-count');
-        countBox.innerText = `今天已完成測驗 ${count} 次`;
+        countBox.innerHTML = `今天已完成測驗 <span class="count-circle">${count}</span> 次`;
       }
       showTodayCount(); // 進首頁時執行
     </script>

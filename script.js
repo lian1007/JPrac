@@ -27,7 +27,7 @@ document.getElementById('retry').addEventListener('click', () => {
 });
 
 document.getElementById('backHome').addEventListener('click', () => {
-  location.href = '../index.html';
+  location.href = '../JPrac/index.html';
 });
 
 const params = new URLSearchParams(window.location.search);
