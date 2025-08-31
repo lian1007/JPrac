@@ -1,0 +1,222 @@
+/* quiz.css — quiz-only styles (cleaned)
+   只包含 test.html / 測驗頁會用到的 CSS，
+   已移除 body/header/nav 與首頁卡片樣式。
+*/
+
+/* ========== Quiz container ========== */
+.quiz-area {
+  margin: 2rem auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 100px;
+  padding-left: 50px;
+}
+
+/* ========== Question card & text ========== */
+.question-card {
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: linear-gradient(180deg, #fff, #fbfcff);
+  border: 1px solid #f1f5f9;
+}
+.question-text {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* ========== Options / choice buttons ========== */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.options button,
+.opt-btn {
+  margin: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: background-color 0.3s, transform 0.12s;
+}
+.options button:hover,
+.opt-btn:hover {
+  transform: translateY(-2px);
+}
+
+.options button.selected,
+.opt-btn.selected {
+  background-color: #4a90e2;
+  border: 0;
+  color: white;
+}
+.options button:disabled,
+.opt-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  background: linear-gradient(180deg, #eef6ff, #f7fbff);
+  border-color: #dbeafe;
+}
+
+/* result area shown below each question */
+.result-span,
+.result-text {
+  margin-top: 10px;
+  font-weight: 700;
+  display: block;
+}
+
+/* ========== Icon buttons used in quiz controls ========== */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--hp-button);
+  transition: background-color 0.3s, transform 0.15s;
+  margin: 0 3px;
+}
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.icon-btn:hover {
+  transform: scale(1.05);
+  background-color: var(--hp-muted);
+}
+
+/* optional clear button animation (if used) */
+#clears:hover {
+  background-color: var(--hp-danger);
+  animation: shakeani 0.4s linear infinite both;
+}
+@keyframes shakeani {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* small control cluster often used in quiz UI */
+.btn-group {
+  gap: 7px;
+  padding: 4px;
+  margin-top: 7px;
+  display: flex;
+}
+
+/* ========== Alerts & Modals (quiz) ========== */
+#custom-alert {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.alert-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 250px;
+}
+#custom-alert.hide {
+  display: none;
+}
+#alert-close {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#alert-close:focus {
+  outline: 0px solid;
+}
+
+/* ========== Complete dialog (quiz) ========== */
+#complete-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.complete-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 2rem;
+}
+#complete-box.hide {
+  display: none;
+}
+
+/* ========== Input field used in some quiz types ========== */
+.inputtext {
+  width: 400px;
+  height: 30px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
+  background-color: #f6f6f6;
+}
+.inputtext:active {
+  transform: scale(0.95);
+}
+.inputtext:focus {
+  background-color: #ffffff;
+}
+
+/* ========== Responsive snippets relevant to quiz ========== */
+@media (max-width: 720px) {
+  .quiz-area {
+    margin: 1.25rem 1rem;
+    padding-left: 16px;
+    gap: 1rem;
+  }
+  .inputtext {
+    width: 100%;
+    max-width: 320px;
+  }
+  .options button {
+    padding: 0.7rem 1rem;
+  }
+}

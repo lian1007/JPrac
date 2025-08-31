@@ -1,0 +1,88 @@
+/* vars.css - shared design tokens (colors, spacing, radii, shadows)
+   Place this file first in the <head> of every page so other styles can use the variables.
+   Usage: var(--hp-primary) or var(--hp-gap, 12px) with fallback value.
+*/
+
+:root {
+  --hp-bg: #ffffff;
+  --hp-muted: #f9f9f9;
+  --hp-primary: #5b87ff;
+  --hp-button: #eeeeee;
+  --hp-surface: #ffffff;
+  --hp-text: #222;
+  --hp-border-radius: 8px;
+  --hp-gap: 12px;
+  --hp-card-shadow: 0 6px 18px rgba(16, 24, 40, 0.05);
+  /* extras useful across the site */
+  --hp-primary-600: #3d63ff;
+  --hp-primary-50: rgba(91, 135, 255, 0.12);
+  --hp-success: #16a34a;
+  --hp-danger: #ff5a5a;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Noto Sans TC', Arial, sans-serif;
+  --base-font-size: 16px;
+}
+
+/* small fallback reset that won't override page-specific rules -------------------------------*/
+
+html {
+  font-size: var(--base-font-size);
+  font-family: var(--font-sans);
+  background: var(--hp-bg);
+  color: var(--hp-text);
+}
+
+header,
+main,
+footer {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* ====== Common header/nav (所有頁面共用) ======
+   - header / nav layout
+   - link hover effect
+*/
+
+header {
+  width: 100%;
+  background: var(--hp-muted);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+header h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--hp-text);
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  align-items: center;
+}
+nav a {
+  text-decoration: none;
+  color: var(--hp-text);
+  font-size: 0.95rem;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+nav a:hover {
+  background: rgba(29, 78, 216, 0.06);
+  color: var(--hp-primary);
+}

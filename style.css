@@ -1,294 +1,151 @@
-body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: Arial, sans-serif;
-}
+/* ====== Homepage styles (只包含首頁) ======
+   - header / nav / main layout
+   - controls / book selector / today count
+   - quiz-list (首頁的課程卡片) 與 .button_go
+*/
 
-header {
+/* ========== Page reset (首頁局部) ========== */
+
+/* ========== Main container ========== */
+main {
   width: 100%;
-  background-color: #f2f2f2;
-  padding: 1rem 0;
+  max-width: 980px;
+  margin: 18px auto;
+  padding: 0 20px;
+}
+
+/* ========== Controls / Book selector ========== */
+.controls {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+.controls label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--hp-text);
 }
-
-nav a {
-  text-decoration: none;
-  color: #333;
-}
-
-nav a:hover {
-  color: #1d4ed8;
-  /* font-weight: bold; */
-}
-
-.quiz-area {
-  margin: 2rem auto;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding-bottom: 100px;
-  padding-left: 50px;
-}
-
-.select-group {
-  max-width: 600px;
-  margin: 10px auto;
-  padding: 1rem;
-  text-align: center;
-  border: solid 1px #eeeeee;
-  border-radius: 20px;
-}
-
-select {
-  padding: 0.5rem;
+#book-selector {
+  padding: 8px 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  cursor: pointer;
-  min-width: 120px;
+  border: 1px solid #ececec;
+  background: var(--hp-surface);
+  min-width: 140px;
+  font-size: 0.95rem;
 }
 
-.button_go {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+/* 今天測驗次數小徽章 */
+#today-count {
+  font-size: 0.95rem;
+  color: #555;
+  margin-left: 4px;
 }
-
-.button_go:hover {
-  background-color: #4a90e2;
-  color: #fff;
-  border-color: #4a90e2;
-}
-
-.options button {
-  margin: 0.3rem;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  transition: background-color 0.3s;
-}
-
-.options button.selected {
-  background-color: #4a90e2;
-  border: 0px;
-  color: white;
-}
-
-.result-text {
-  margin-left: 1rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-}
-
-/* ========== 答案送出+清除按鈕 ========== */
-
-.icon-btn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 8px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 0 3px;
-}
-
-.icon-btn img {
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
-}
-
-.icon-btn:hover {
-  background-color: #ddff9e;
-  transform: scale(1.1);
-  transition: transform 0.3s;
-}
-
-#clears:hover {
-  background-color: #ff5a5a;
-  animation: shakeani 0.4s linear infinite both;
-}
-
-@keyframes shakeani {
-  0% {
-    -webkit-transform: translate(0);
-    transform: translate(0);
-  }
-
-  20% {
-    -webkit-transform: translate(-1px, 1px);
-    transform: translate(-1px, 1px);
-  }
-
-  40% {
-    -webkit-transform: translate(-1px, -1px);
-    transform: translate(-1px, -1px);
-  }
-
-  60% {
-    -webkit-transform: translate(1px, 1px);
-    transform: translate(1px, 1px);
-  }
-
-  80% {
-    -webkit-transform: translate(1px, -1px);
-    transform: translate(1px, -1px);
-  }
-
-  100% {
-    -webkit-transform: translate(0);
-    transform: translate(0);
-  }
-}
-
-.btn-group {
-  gap: 7px;
-  padding: 4px;
-  margin-top: 7px;
-  display: flex;
-}
-
-/* ========== 警告訊息彈出 ========== */
-
-#custom-alert {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.alert-box {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  min-width: 250px;
-}
-
-#custom-alert.hide {
-  display: none;
-}
-
-#alert-close {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#alert-close:focus {
-  outline: 0px solid;
-}
-
-/* ========== 完成作答訊息 ========== */
-
-#complete-box {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.complete-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  text-align: center;
-  line-height: 2rem;
-}
-
-#complete-box.hide {
-  display: none;
-}
-
-/* ========== 中翻日輸入框 ========== */
-
-.inputtext {
-  width: 400px;
-  height: 30px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1.5px solid lightgrey;
-  outline: none;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0px 0px 20px -18px;
-  background-color: #f6f6f6;
-}
-/* 
-.inputtext:hover {
-  border: 2px solid lightgrey;
-  box-shadow: 0px 0px 20px -17px;
-} */
-
-.inputtext:active {
-  transform: scale(0.95);
-}
-
-.inputtext:focus {
-  background-color: #ffffff;
-}
-
-/* ========== 徽章系統 ========== */
-.today-message {
-  margin-top: 1rem;
-  text-align: center;
-  color: #1a73e8;
-  font-weight: bold;
-  background: #f5f5f5;
-  padding: 10px;
-  border: 0px solid;
-  border-radius: 12px;
-}
-.today-message:hover {
-  display: inline-block;
-  vertical-align: middle;
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(255, 198, 198, 0);
-  position: relative;
-  overflow: hidden;
-}
-
 .count-circle {
   display: inline-block;
-  background-color: #f5d0f6; /* 你要的底色 */
-  border-radius: 50%;
-  width: 24px; /* 圓的寬度 */
-  height: 24px; /* 圓的高度 */
-  line-height: 24px; /* 讓文字垂直置中 */
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
   text-align: center;
-  font-weight: bold;
-  font-size: 15px;
+  border-radius: var(--hp-border-radius);
+  background: rgba(29, 78, 216, 0.08);
+  color: var(--hp-primary);
+  font-weight: 700;
+  margin-left: 8px;
+  padding: 0 6px;
+}
+
+/* ========== Quiz list on homepage (課程卡片清單) ========== */
+.quiz-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.select-group {
+  background: var(--hp-surface);
+  border-radius: var(--hp-radius);
+  padding: 12px;
+  box-shadow: var(--hp-card-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.select-group h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+/* select 欄位外觀 */
+.select-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+/* ========== Buttons (首頁專用) ========== */
+.button_go {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  background: var(--hp-primary);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.12s;
+}
+.button_go:active {
+  transform: translateY(1px);
+}
+.button_go[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 小型 icon 按鈕（若有） */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ========== Footer (首頁) ========== */
+footer {
+  width: 100%;
+  padding: 14px 20px;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  background: transparent;
+}
+
+/* ========== Responsive (首頁) ========== */
+@media (max-width: 720px) {
+  header {
+    padding: 12px;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .quiz-list {
+    grid-template-columns: 1fr;
+  }
+  #book-selector {
+    min-width: 100%;
+  }
 }

@@ -1,3 +1,11 @@
+// script.js - for test.html
+// 功能：處理題庫載入、出題、答題判斷、顯示未答提示、完成視窗、重試與回首頁
+// 說明：
+//  - 從 URL 讀取 lesson & mode (範例: ?lesson=book1/words/L1.json&mode=word)
+//  - 如果 lesson 沒有 book1/ 前綴，會自動補上 'book1/'
+//  - 完成全部題目後會呼叫 window.saveTodayAttempt()（若該函式存在於全域）
+//  - 需配合 test.html 裡的 #quiz-area, #custom-alert (#alert-msg, #alert-close), #complete-box (#retry, #backHome), #page-title 等 DOM 元素
+
 function getParam(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
@@ -27,7 +35,7 @@ document.getElementById('retry').addEventListener('click', () => {
 });
 
 document.getElementById('backHome').addEventListener('click', () => {
-  location.href = '../JPrac/index.html';
+  location.href = 'index.html';
 });
 
 const params = new URLSearchParams(window.location.search);

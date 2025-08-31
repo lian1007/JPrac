@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>日文練習測驗</title>
+    <link rel="stylesheet" href="vars.css" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- homepage styles -->
   </head>
   <body>
+    <!-- ===== 頁首 ===== -->
     <header>
       <h1>日文練習測驗網站</h1>
       <nav>
@@ -17,82 +21,60 @@
         </ul>
       </nav>
     </header>
-    <div id="today-count" class="today-message"></div>
-    <div class="select-group" id="wordsclass">
-      <h3>日翻中</h3>
-      <select id="lesson-word">
-        <option value="test.html?lesson=words/L1.json&mode=word">第一課</option>
-        <option value="test.html?lesson=words/L2.json&mode=word">第二課</option>
-        <option value="test.html?lesson=words/L3.json&mode=word">第三課</option>
-      </select>
-      <button class="button_go">前往測驗</button>
-    </div>
 
-    <div class="select-group" id="dictclass">
-      <h3>中翻日</h3>
-      <select id="lesson-dict">
-        <option value="test.html?lesson=dict/L1.json&mode=dict">第一課</option>
-        <option value="test.html?lesson=dict/L2.json&mode=dict">第二課</option>
-        <option value="test.html?lesson=dict/L3.json&mode=dict">第三課</option>
-      </select>
-      <button class="button_go">前往測驗</button>
-    </div>
+    <!--  ===== 主要內容區 ===== -->
+    <main>
+      <section class="controls">
+        <label for="book-selector">選擇書籍：</label>
+        <select id="book-selector" aria-label="選擇書籍">
+          <option value="book1" selected>大家的日本語 初級</option>
+          <!-- 若未來有其他書，加入<option value="book2">book2</option> -->
+        </select>
 
-    <!-- <option value="test.html?lesson=words/L2.json&mode=word">第二課</option>
-        <option value="test.html?lesson=words/L3.json&mode=word">第三課</option> -->
+        <div id="today-count">
+          今天已完成測驗
+          <span class="count-circle">0</span>
+          次
+        </div>
+      </section>
 
-    <div class="select-group" id="sentenceclass">
-      <h3>文法練習</h3>
-      <select id="lesson-sentence">
-        <option value="test.html?lesson=sentence/L1.json&mode=sentence">
-          第一課
-        </option>
-      </select>
-      <button class="button_go">前往測驗</button>
-    </div>
+      <!-- ===== 測驗選單區 ===== -->
+      <section class="quiz-list">
+        <div class="select-group" id="wordsclass">
+          <h3>日翻中</h3>
+          <select id="lesson-word" aria-label="選單字課程">
+            <!-- data-lesson 存放相對課程路徑（不含 book 前綴） -->
+            <option data-lesson="words/L1.json">第 1 課</option>
+            <option data-lesson="words/L2.json">第 2 課</option>
+            <option data-lesson="words/L3.json">第 3 課</option>
+          </select>
+          <button type="button" class="button_go">前往測驗</button>
+        </div>
 
-    <script>
-      // 綁定兩個前往測驗按鈕
-      document.querySelectorAll('.button_go').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const parent = btn.parentElement;
+        <div class="select-group" id="dictclass">
+          <h3>中翻日</h3>
+          <select id="lesson-dict" aria-label="選字典課程">
+            <option data-lesson="dict/L1.json">第 1 課</option>
+            <option data-lesson="dict/L2.json">第 2 課</option>
+            <option data-lesson="dict/L3.json">第 3 課</option>
+          </select>
+          <button type="button" class="button_go">前往測驗</button>
+        </div>
 
-          if (parent.id === 'wordsclass') {
-            const url = parent.querySelector('#lesson-word').value;
-            location.href = url;
-          } else if (parent.id === 'sentenceclass') {
-            const url = parent.querySelector('#lesson-sentence').value;
-            location.href = url;
-          } else if (parent.id === 'dictclass') {
-            const url = parent.querySelector('#lesson-dict').value;
-            location.href = url;
-          }
-        });
-      });
+        <div class="select-group" id="sentenceclass">
+          <h3>文法</h3>
+          <select id="lesson-sentence" aria-label="選句型課程">
+            <option data-lesson="sentence/L1.json">第 1 課</option>
+          </select>
+          <button type="button" class="button_go">前往測驗</button>
+        </div>
+      </section>
+    </main>
 
-      /* ========== 徽章系統 ========== */
-      function saveTodayAttempt() {
-        const today = new Date().toISOString().slice(0, 10);
-        const allData = JSON.parse(localStorage.getItem('dailyStats') || '{}');
+    <footer>
+      <p>&copy; 2024 日文練習測驗網站. 版權所有.</p>
+    </footer>
 
-        if (allData[today]) {
-          allData[today] += 1;
-        } else {
-          allData[today] = 1;
-        }
-
-        localStorage.setItem('dailyStats', JSON.stringify(allData));
-      }
-
-      function showTodayCount() {
-        const today = new Date().toISOString().slice(0, 10);
-        const allData = JSON.parse(localStorage.getItem('dailyStats') || '{}');
-        const count = allData[today] || 0;
-
-        const countBox = document.getElementById('today-count');
-        countBox.innerHTML = `今天已完成測驗 <span class="count-circle">${count}</span> 次`;
-      }
-      showTodayCount(); // 進首頁時執行
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
