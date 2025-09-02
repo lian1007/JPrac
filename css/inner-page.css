@@ -1,0 +1,65 @@
+/* inner-page.css - styles for about.html & donate.html */
+
+/* 核心內容區塊 */
+.main-content {
+  width: 100%;
+  max-width: 720px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+/* 關於本站區塊 */
+.about {
+  line-height: 1.7;
+}
+
+/* 贊助區塊 */
+.donate-area {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.donate-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.donate-btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid var(--hp-primary);
+  border-radius: var(--hp-border-radius);
+  background-color: transparent;
+  color: var(--hp-primary);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.donate-btn:hover {
+  background-color: var(--hp-primary-50);
+  transform: translateY(-2px);
+}
+
+/* 通用標題與段落樣式 */
+h1,
+h2,
+h3 {
+  color: var(--hp-text);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+p {
+  line-height: 1.7;
+  color: #555;
+}
+
+@media (max-width: 720px) {
+  .main-content {
+    margin-top: 1rem;
+  }
+}

@@ -176,14 +176,36 @@
   z-index: 9999;
 }
 .complete-content {
-  background: #fff;
-  padding: 2rem;
+  background: white;
+  padding: 1.5rem;
   border-radius: 10px;
   text-align: center;
-  line-height: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 250px;
 }
 #complete-box.hide {
   display: none;
+}
+
+/* ========== Buttons in Complete dialog (New Style) ========== */
+
+.pop_btn {
+  margin: 1px 3px;
+  padding: 0.5rem 1rem;
+  background: var(--hp-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 懸停和點擊效果 */
+.pop_btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.pop_btn:active {
+  transform: translateY(1px);
 }
 
 /* ========== Input field used in some quiz types ========== */

@@ -6,9 +6,9 @@
 :root {
   --hp-bg: #ffffff;
   --hp-muted: #f9f9f9;
-  --hp-primary: #5b87ff;
+  --hp-primary: hsl(224, 100%, 68%);
   --hp-button: #eeeeee;
-  --hp-surface: #ffffff;
+  --hp-surface: #eeeeee;
   --hp-text: #222;
   --hp-border-radius: 8px;
   --hp-gap: 12px;

@@ -346,5 +346,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch((err) => {
       console.error('載入題目失敗', err);
       showAlert('載入題目失敗，請檢查網址或稍後再試。');
+      // 新增這段程式碼，讓 alert 視窗的按鈕點擊後回首頁
+      const closeBtn = document.getElementById('alert-close');
+      if (closeBtn) {
+        closeBtn.onclick = () => {
+          location.href = 'index.html';
+        };
+      }
     });
 });
