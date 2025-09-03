@@ -110,6 +110,35 @@ function showComplete() {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('script.js loaded (DOM ready)');
 
+  // 1. 音效開關邏輯
+  const soundToggleBtn = document.getElementById('sound-toggle');
+  const soundToggleImg = soundToggleBtn.querySelector('img');
+  let isSoundOn = localStorage.getItem('isSoundOn') !== 'false';
+
+  function updateSoundIcon() {
+    if (isSoundOn) {
+      soundToggleImg.src = 'icons/sound_on.png';
+      soundToggleBtn.title = '音效已開啟';
+    } else {
+      soundToggleImg.src = 'icons/sound_off.png';
+      soundToggleBtn.title = '音效已關閉';
+    }
+  }
+
+  updateSoundIcon();
+
+  soundToggleBtn.addEventListener('click', () => {
+    isSoundOn = !isSoundOn;
+    localStorage.setItem('isSoundOn', isSoundOn);
+    updateSoundIcon();
+  });
+
+  // 2. 載入音效檔案
+  const correctSound = new Audio('../sounds/correct_answer.mp3');
+  correctSound.volume = 0.2;
+
+  updateSoundIcon();
+
   // 讀取 URL 參數
   const params = new URLSearchParams(window.location.search);
   let lessonFile = params.get('lesson') || 'book1/words/L1.json';
@@ -245,6 +274,12 @@ document.addEventListener('DOMContentLoaded', () => {
               }
               resultSpan.innerText = '✅';
               resultSpan.style.color = 'green';
+
+              // 新增：如果音效開關是勾選狀態，才播放音效
+              if (soundToggle.checked) {
+                correctSound.currentTime = 0;
+                correctSound.play();
+              }
             } else {
               if (isCorrected) {
                 // 如果答對過又答錯，計數器減1
@@ -317,6 +352,11 @@ document.addEventListener('DOMContentLoaded', () => {
               }
               resultSpan.innerText = '✅';
               resultSpan.style.color = 'green';
+              // 新增：如果音效開關是勾選狀態，才播放音效
+              if (soundToggle.checked) {
+                correctSound.currentTime = 0;
+                correctSound.play();
+              }
             } else {
               if (isCorrected) {
                 // 如果答對過又答錯，計數器減1

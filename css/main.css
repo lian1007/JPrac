@@ -65,7 +65,7 @@ main {
 }
 .select-group {
   background: var(--hp-surface);
-  border-radius: var(--hp-radius);
+  border-radius: var(--hp-border-radius);
   padding: 12px;
   box-shadow: var(--hp-card-shadow);
   border: 1px solid rgba(0, 0, 0, 0.03);

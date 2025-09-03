@@ -3,6 +3,16 @@
    已移除 body/header/nav 與首頁卡片樣式。
 */
 
+header .icon-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* ========== Quiz container ========== */
 .quiz-area {
   margin: 2rem auto;
